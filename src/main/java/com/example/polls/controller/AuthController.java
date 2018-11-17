@@ -11,6 +11,7 @@ import com.example.polls.dto.JwtAuthenticationResponse;
 import com.example.polls.repository.RoleRepository;
 import com.example.polls.repository.UserRepository;
 import com.example.polls.security.JwtTokenProvider;
+import com.example.polls.util.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
+import java.math.BigDecimal;
 import java.net.URI;
 import java.util.Collections;
 
@@ -60,11 +62,10 @@ public class AuthController {
                         loginRequest.getPassword()
                 )
         );
-
         SecurityContextHolder.getContext().setAuthentication(authentication);
-
+        User user  = userRepository.findByLogin(loginRequest.getLogin()).get();
         String jwt = tokenProvider.generateToken(authentication);
-        return ResponseEntity.ok(new JwtAuthenticationResponse(jwt));
+        return ResponseEntity.ok(new JwtAuthenticationResponse(jwt, ModelMapper.fromUserToUserProfileDTO(user)));
     }
 
     @PostMapping("/signup")
@@ -77,7 +78,8 @@ public class AuthController {
         User user = new User(signUpRequest.getLogin(),
                 signUpRequest.getPassword(),
                 signUpRequest.getName(),
-                signUpRequest.getCardNumber());
+                signUpRequest.getCardNumber(),
+                BigDecimal.valueOf(100000));
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 

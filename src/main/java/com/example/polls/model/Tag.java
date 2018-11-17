@@ -23,6 +23,9 @@ public class Tag {
 
     private String okved;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tag")
+    private List<Product> productList;
+
     public Tag(@Size(max = 500) String title, String okved) {
         this.title = title;
         this.okved = okved;
@@ -52,5 +55,13 @@ public class Tag {
 
     public void setOkved(String okved) {
         this.okved = okved;
+    }
+
+    public List<Product> getProductList() {
+        return productList;
+    }
+
+    public void setProductList(List<Product> productList) {
+        this.productList = productList;
     }
 }

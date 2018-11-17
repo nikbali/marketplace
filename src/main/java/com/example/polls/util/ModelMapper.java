@@ -1,7 +1,20 @@
 package com.example.polls.util;
 
-public class ModelMapper {
+import com.example.polls.dto.UserProfileDTO;
+import com.example.polls.model.User;
 
-    /*маппер в дто*/
+public  class ModelMapper {
+
+    public static User fromUserDtoToUser(UserProfileDTO userProfileDTO) {
+        return new User();
+    }
+
+    public static UserProfileDTO fromUserToUserProfileDTO(User user) {
+        return new UserProfileDTO(user.getId(),
+                user.getLogin(),
+                user.getFio(),
+                user.getCardNumber(),
+                user.getBalance());
+    }
 
 }

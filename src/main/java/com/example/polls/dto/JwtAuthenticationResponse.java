@@ -1,15 +1,15 @@
 package com.example.polls.dto;
 
-/**
- * Created by rajeevkumarsingh on 19/08/17.
- */
-public class JwtAuthenticationResponse {
-    private String accessToken;
-    private String tokenType = "Bearer";
 
-    public JwtAuthenticationResponse(String accessToken) {
+public class JwtAuthenticationResponse {
+    private  String accessToken;
+    private  UserProfileDTO userProfileDTO;
+
+    public JwtAuthenticationResponse(final String accessToken, final UserProfileDTO userProfileDTO) {
         this.accessToken = accessToken;
+        this.userProfileDTO = userProfileDTO;
     }
+
 
     public String getAccessToken() {
         return accessToken;
@@ -19,11 +19,12 @@ public class JwtAuthenticationResponse {
         this.accessToken = accessToken;
     }
 
-    public String getTokenType() {
-        return tokenType;
+
+    public UserProfileDTO getUserProfileDTO() {
+        return userProfileDTO;
     }
 
-    public void setTokenType(String tokenType) {
-        this.tokenType = tokenType;
+    public void setUserProfileDTO(UserProfileDTO userProfileDTO) {
+        this.userProfileDTO = userProfileDTO;
     }
 }

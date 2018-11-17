@@ -3,7 +3,7 @@ package com.example.polls.controller;
 import com.example.polls.model.*;
 import com.example.polls.dto.*;
 import com.example.polls.repository.UserRepository;
-import com.example.polls.repository.VoteRepository;
+
 import com.example.polls.security.CurrentUser;
 import com.example.polls.security.UserPrincipal;
 import com.example.polls.util.AppConstants;
@@ -21,6 +21,7 @@ import java.net.URI;
 @RestController
 @RequestMapping("/api/polls")
 public class PollController {
+
 /*
 
     @Autowired
@@ -71,6 +72,7 @@ public class PollController {
                          @Valid @RequestBody VoteRequest voteRequest) {
         return pollService.castVoteAndGetUpdatedPoll(pollId, voteRequest, currentUser);
     }
+
 */
 
 }

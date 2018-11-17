@@ -34,12 +34,12 @@ public class Product {
     @Size(max = 2000)
     private String image2;
 
-    @ManyToOne
-    @JoinColumn(name = "partner_id")
+    @ManyToOne(optional = false )
+    @JoinColumn(name = "partner_id", referencedColumnName = "id")
     private Partner partner;
 
-    @ManyToOne
-    @JoinColumn(name = "tag_id")
+    @ManyToOne(optional = false )
+    @JoinColumn(name = "tag_id",  referencedColumnName = "id")
     private Tag tag;
 
 

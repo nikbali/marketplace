@@ -17,6 +17,7 @@ CREATE TABLE `users` (
   `password` varchar(100) NOT NULL,
   `fio` varchar(200) NULL,
   `card_number` bigint(20) NULL,
+  `balance` decimal(19,2) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `uk_users_username` (`login`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -40,7 +41,7 @@ CREATE TABLE `user_roles` (
 CREATE TABLE `tag` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `title` varchar(500) NOT NULL,
-  `okved` bigint(10) DEFAULT NULL,
+  `okved` varchar(20) DEFAULT '47.9',
   PRIMARY KEY (`id`)
  ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

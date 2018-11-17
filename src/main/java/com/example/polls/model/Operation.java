@@ -38,12 +38,12 @@ public class Operation {
     private StatusOperation status;
 
 
-    @ManyToOne
-    @JoinColumn(name = "product_id")
+    @ManyToOne(optional = false )
+    @JoinColumn(name = "product_id", referencedColumnName = "id")
     private Product product;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
+    @ManyToOne(optional = false )
+    @JoinColumn(name = "user_id",  referencedColumnName = "id")
     private User user;
 
 

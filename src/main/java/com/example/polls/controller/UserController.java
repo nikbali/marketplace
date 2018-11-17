@@ -2,10 +2,7 @@ package com.example.polls.controller;
 
 import com.example.polls.exception.ResourceNotFoundException;
 import com.example.polls.model.User;
-import com.example.polls.dto.*;
-import com.example.polls.repository.UserRepository;
-import com.example.polls.repository.VoteRepository;
-import com.example.polls.security.UserPrincipal;
+
 import com.example.polls.security.CurrentUser;
 import com.example.polls.util.AppConstants;
 import org.slf4j.Logger;

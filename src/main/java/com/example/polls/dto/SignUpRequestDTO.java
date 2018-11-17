@@ -17,7 +17,6 @@ public class SignUpRequestDTO {
     @Size(min = 4, max = 40)
     private String name;
 
-    @Size(min = 16, max = 20)
     private Long cardNumber;
 
 

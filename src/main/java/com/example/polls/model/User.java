@@ -6,6 +6,8 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -36,6 +38,9 @@ public class User {
 
     @Column(name = "card_number")
     private Long cardNumber;
+
+
+    private BigDecimal balance;
 
 
     @ManyToMany(fetch = FetchType.LAZY)
@@ -75,11 +80,12 @@ public class User {
         this.operations = operations;
     }
 
-    public User(String login, String password, String fio, Long cardNumber) {
+    public User(String login, String password, String fio, Long cardNumber, BigDecimal balance) {
         this.login = login;
         this.password = password;
         this.fio = fio;
         this.cardNumber = cardNumber;
+        this.balance = balance;
 
     }
 
@@ -129,5 +135,13 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public BigDecimal getBalance() {
+        return balance;
+    }
+
+    public void setBalance(BigDecimal balance) {
+        this.balance = balance;
     }
 }
