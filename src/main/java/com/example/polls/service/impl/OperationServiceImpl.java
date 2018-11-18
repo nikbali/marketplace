@@ -54,6 +54,7 @@ public class OperationServiceImpl implements OperationService {
         operation.setStatus(StatusOperation.DONE);
         operation.setUser(user);
         operation.setProduct(product);
+        operation.setCount(count);
         Operation oper = operationRepository.save(operation);
 
         /* Изменем баланс у пользователя после покупки*/

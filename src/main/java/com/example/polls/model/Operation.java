@@ -37,6 +37,9 @@ public class Operation {
     @Enumerated(EnumType.STRING)
     private StatusOperation status;
 
+    @Column(name = "count")
+    private Integer count;
+
 
     @ManyToOne(optional = false )
     @JoinColumn(name = "product_id", referencedColumnName = "id")
@@ -54,13 +57,15 @@ public class Operation {
                      String description,
                      StatusOperation status,
                      Product product,
-                     User user) {
+                     User user,
+                     Integer count) {
         this.amount = amount;
         this.date = date;
         this.description = description;
         this.status = status;
         this.product = product;
         this.user = user;
+        this.count = count;
     }
 
     public long getId() {
@@ -149,5 +154,13 @@ public class Operation {
     public int hashCode() {
 
         return Objects.hash(amount, date, description, status, product, user);
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
     }
 }

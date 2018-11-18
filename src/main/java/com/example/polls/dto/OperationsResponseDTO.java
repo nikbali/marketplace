@@ -11,9 +11,11 @@ public class OperationsResponseDTO {
     private BigDecimal amount;
     private String status;
     private String user;
+    private String image;
+    private Integer count;
 
     public OperationsResponseDTO(){}
-    public OperationsResponseDTO(Long id, String description, String product, String date, BigDecimal amount, String status, String user) {
+    public OperationsResponseDTO(Long id, String description, String product, String date, BigDecimal amount, String status, String user,String image,Integer count) {
         this.id = id;
         this.description = description;
         this.product = product;
@@ -21,6 +23,8 @@ public class OperationsResponseDTO {
         this.amount = amount;
         this.status = status;
         this.user = user;
+        this.count = count;
+        this.image = image;
     }
 
     public Long getId() {
@@ -77,5 +81,21 @@ public class OperationsResponseDTO {
 
     public void setUser(String user) {
         this.user = user;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
     }
 }

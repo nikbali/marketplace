@@ -1,5 +1,6 @@
 package com.example.polls.controller;
 
+import com.example.polls.dto.OperationsResponseDTO;
 import com.example.polls.dto.UserProfileDTO;
 import com.example.polls.exception.ResourceNotFoundException;
 import com.example.polls.model.User;
@@ -15,12 +16,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RestController
 @RequestMapping("/api")
-public class UserController { @
-
-
-    Autowired
+public class UserController {
+    @Autowired
     private UserRepository userRepository;
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
@@ -35,11 +37,13 @@ public class UserController { @
 
     @GetMapping("/user/operations")
     @PreAuthorize("hasRole('USER')")
-    public UserProfileDTO loadOperationsByUser(@CurrentUser UserPrincipal currentUser) {
+    public List<OperationsResponseDTO> loadOperationsByUser(@CurrentUser UserPrincipal currentUser) {
         User user = userRepository.findByLogin(currentUser.getUsername()).get();
-        user.getOperations();
-        UserProfileDTO userProfileDTO = ModelMapper.fromUserToUserProfileDTO(user);
-        return userProfileDTO;
+        List<OperationsResponseDTO> operDto = user.getOperations()
+                .stream()
+                .map(ModelMapper::fromOperationToOperationsResponseDTO)
+                .collect(Collectors.toList());
+        return operDto;
     }
 
 
