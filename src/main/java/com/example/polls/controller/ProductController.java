@@ -54,7 +54,6 @@ public class ProductController {
                             .forEach(tag -> tags.add(tag));
                 }
             }
-            tags.add(optionalTag.get());
         }
         if(dto.getOkvds() != null){
                 dto.getOkvds()

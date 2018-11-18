@@ -7,12 +7,14 @@ import com.example.polls.model.Tag;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.Size;
+import java.math.BigDecimal;
 
 public class ProductResponseDTO {
     private Long id;
     private String name;
     private String description;
-    private Long amount;
+    private BigDecimal amount;
+    private Integer count;
     private String image1;
     private String image2;
     private String partner;
@@ -22,11 +24,12 @@ public class ProductResponseDTO {
     public ProductResponseDTO(final Long id,
                               final String name,
                               final String description,
-                              final Long amount,
+                              final BigDecimal amount,
                               final String image1,
                               final String image2,
                               final String partner,
-                              final String tag) {
+                              final String tag,
+                              final Integer count) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -35,6 +38,7 @@ public class ProductResponseDTO {
         this.image2 = image2;
         this.partner = partner;
         this.tag = tag;
+        this.count = count;
     }
 
     public ProductResponseDTO(final Product product) {
@@ -46,6 +50,7 @@ public class ProductResponseDTO {
         this.image2 = product.getImage2();
         if(product.getPartner() != null) this.partner = product.getPartner().getName();
         if(product.getTag() != null) this.tag = product.getTag().getTitle();
+        this.count = product.getCount();
     }
 
     public String getName() {
@@ -64,11 +69,11 @@ public class ProductResponseDTO {
         this.description = description;
     }
 
-    public Long getAmount() {
+    public BigDecimal getAmount() {
         return amount;
     }
 
-    public void setAmount(Long amount) {
+    public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
 
@@ -110,5 +115,13 @@ public class ProductResponseDTO {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
     }
 }

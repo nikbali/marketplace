@@ -5,7 +5,6 @@ import com.example.polls.model.Tag;
 import com.example.polls.repository.ProductRepository;
 import com.example.polls.repository.TagRepository;
 import com.example.polls.service.ProductService;
-import com.example.polls.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

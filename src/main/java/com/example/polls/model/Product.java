@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,8 @@ public class Product {
     @Size(max = 1000)
     private String description;
 
-    private Long amount;
+    private BigDecimal amount;
+    private Integer count;
 
     @Size(max = 2000)
     private String image1;
@@ -45,11 +47,12 @@ public class Product {
 
     public Product(@Size(max = 140) String name,
                    @Size(max = 1000) String description,
-                   Long amount,
+                   BigDecimal amount,
                    @Size(max = 2000) String image1,
                    @Size(max = 2000) String image2,
                    Partner partner,
-                   Tag tag) {
+                   Tag tag,
+                   Integer count) {
         this.name = name;
         this.description = description;
         this.amount = amount;
@@ -57,6 +60,7 @@ public class Product {
         this.image2 = image2;
         this.partner = partner;
         this.tag = tag;
+        this.count = count;
     }
 
     public Product(){}
@@ -85,11 +89,11 @@ public class Product {
         this.description = description;
     }
 
-    public Long getAmount() {
+    public BigDecimal getAmount() {
         return amount;
     }
 
-    public void setAmount(Long amount) {
+    public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
 
@@ -143,5 +147,13 @@ public class Product {
     public int hashCode() {
 
         return Objects.hash(name, description, amount, image1, image2, partner, tag);
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
     }
 }

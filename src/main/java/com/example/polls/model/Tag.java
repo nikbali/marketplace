@@ -1,5 +1,6 @@
 package com.example.polls.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -23,6 +24,7 @@ public class Tag {
 
     private String okved;
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tag")
     private List<Product> productList;
 

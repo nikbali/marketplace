@@ -1,6 +1,7 @@
 CREATE DATABASE  IF NOT EXISTS `hackaton`
 USE `hackaton`;
 
+
 -- порядок важен
 DROP TABLE IF EXISTS `operation`;
 DROP TABLE IF EXISTS `product`;
@@ -57,7 +58,8 @@ CREATE TABLE `product` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(140) NOT NULL,
   `description` varchar(1000) DEFAULT NULL,
-  `amount` double DEFAULT  NULL,
+  `amount` decimal(19,2)  NULL,
+  `count` int  DEFAULT 100,
   `image1` varchar(2000) DEFAULT NULL,
   `image2` varchar(2000) DEFAULT NULL,
   `partner_id` bigint(20) DEFAULT NULL,
@@ -88,6 +90,3 @@ CREATE TABLE `tag_client` (
   CONSTRAINT `FK_User_MM`   FOREIGN KEY (`user_id`) REFERENCES `users`(`id`),
   CONSTRAINT `FK_Tag_MM`    FOREIGN KEY (`tag_id`) REFERENCES `tag`(`id`)
  ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-INSERT IGNORE INTO roles(name) VALUES('ROLE_USER');
-INSERT IGNORE INTO roles(name) VALUES('ROLE_ADMIN');
