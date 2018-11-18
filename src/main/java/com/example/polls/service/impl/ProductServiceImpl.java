@@ -40,4 +40,10 @@ public class ProductServiceImpl implements ProductService {
         List<Product> products =  productRepository.findByTags(stringsTag);
         return products;
     }
+
+    @Override
+    public List<Product> findByPartnerId(final String partnerId){
+        List<Product> products =  productRepository.findByPartnerId(partnerId);
+        return products;
+    }
 }

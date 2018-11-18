@@ -20,4 +20,7 @@ public interface ProductService {
      List<Product> findByTags(final Set<Tag> tags);
 
 
+     List<Product> findByPartnerId(final String partnerId);
+
+
 }

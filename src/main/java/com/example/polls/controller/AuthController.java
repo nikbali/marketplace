@@ -96,4 +96,34 @@ public class AuthController {
 
         return ResponseEntity.created(location).body(new ApiResponse(true, "User registered successfully"));
     }
+
+
+    @PostMapping("/signpartner")
+    public ResponseEntity<?> registerPartner(@Valid @RequestBody SignUpRequestDTO signUpRequest) {
+        if(userRepository.existsByLogin(signUpRequest.getLogin())) {
+            return new ResponseEntity(new ApiResponse(false, "Login is already taken!"),
+                    HttpStatus.BAD_REQUEST);
+        }
+        // Creating user's account
+        User user = new User(signUpRequest.getLogin(),
+                signUpRequest.getPassword(),
+                signUpRequest.getName(),
+                signUpRequest.getCardNumber(),
+                BigDecimal.valueOf(100000));
+
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+
+        Role userRole = roleRepository.findByName(RoleName.ROLE_PARTNER)
+                .orElseThrow(() -> new AppException("User Role not set."));
+
+        user.setRoles(Collections.singleton(userRole));
+
+        User result = userRepository.save(user);
+
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentContextPath().path("/users/{username}")
+                .buildAndExpand(result.getLogin()).toUri();
+
+        return ResponseEntity.created(location).body(new ApiResponse(true, "User registered successfully"));
+    }
 }

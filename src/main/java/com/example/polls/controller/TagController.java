@@ -34,33 +34,5 @@ public class TagController {
         return tags;
     }
 
-    /*@PostMapping
-    @PreAuthorize("hasRole('USER')")
-    public ResponseEntity<?> createPoll(@Valid @RequestBody PollRequest pollRequest) {
-        Product product = pollService.createPoll(pollRequest);
-
-        URI location = ServletUriComponentsBuilder
-                .fromCurrentRequest().path("/{pollId}")
-                .buildAndExpand(product.getId()).toUri();
-
-        return ResponseEntity.created(location)
-                .body(new ApiResponse(true, "Product Created Successfully"));
-    }
-
-
-    @GetMapping("/{pollId}")
-    public PollResponse getPollById(@CurrentUser UserPrincipal currentUser,
-                                    @PathVariable Long pollId) {
-        return pollService.getPollById(pollId, currentUser);
-    }
-
-    @PostMapping("/{pollId}/votes")
-    @PreAuthorize("hasRole('USER')")
-    public PollResponse castVote(@CurrentUser UserPrincipal currentUser,
-                         @PathVariable Long pollId,
-                         @Valid @RequestBody VoteRequest voteRequest) {
-        return pollService.castVoteAndGetUpdatedPoll(pollId, voteRequest, currentUser);
-    }
-    */
 
 }

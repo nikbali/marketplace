@@ -1,6 +1,7 @@
 package com.example.polls.controller;
 
 import com.example.polls.dto.ProductByOkvdRequestDTO;
+import com.example.polls.dto.ProductCreateRequestDTO;
 import com.example.polls.dto.ProductResponseDTO;
 import com.example.polls.model.Tag;
 import com.example.polls.repository.TagRepository;
@@ -11,6 +12,7 @@ import com.example.polls.util.AppConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -74,5 +76,22 @@ public class ProductController {
     }
 
 
+    @GetMapping("/partner")
+    public List<ProductResponseDTO> getProductsByPartnerId(@RequestParam(value = "partnerId") String  partnerId) {
+        return productService.findByPartnerId(partnerId)
+                .stream()
+                .map(ProductResponseDTO::new)
+                .collect(Collectors.toList());
+    }
+
+   /* @PostMapping("/create")
+    public ResponseEntity<?> createProduct(@Valid @RequestBody ProductCreateRequestDTO dto) {
+
+
+        return productService.createProduct(tags)
+                .stream()
+                .map(ProductResponseDTO::new)
+                .collect(Collectors.toList());
+    }*/
 
 }
